@@ -26,13 +26,11 @@ export default class Paddle {
     } // constructor ends
     
     up(){
-        console.log('up');
-        this.y -= this.speed;
+        this.y = Math.max(0, this.y - this.speed);
     }
     
     down(){
-        console.log('down');
-        this.y += this.speed;
+        this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
     }
 
     /**
