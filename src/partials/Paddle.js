@@ -10,9 +10,34 @@ export default class Paddle {
       this.y = y;
       this.speed = 10;
       this.score = 0;
-      this.up = up;
-      this.down = down;
+
+      document.addEventListener('keydown', event => {
+        
+        switch (event.key) {
+            case up:
+              this.up();
+              break;
+            case down:
+              this.down();
+              break;
+        }
+
+      });
+    } // constructor ends
+    
+    up(){
+        console.log('up');
+        this.y -= this.speed;
     }
+    
+    down(){
+        console.log('down');
+        this.y += this.speed;
+    }
+
+    /**
+     * Render SVG Images
+     */
     
     render(svg) {
         
