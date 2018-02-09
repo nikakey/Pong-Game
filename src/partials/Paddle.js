@@ -23,7 +23,7 @@ export default class Paddle {
         }
 
       });
-    } // constructor ends
+    } // constructor ends here
     
     up(){
         this.y = Math.max(0, this.y - this.speed);
@@ -34,7 +34,7 @@ export default class Paddle {
     }
 
     /**
-     * Render SVG Images
+     * Render SVG Images of Paddles
      */
     
     render(svg) {

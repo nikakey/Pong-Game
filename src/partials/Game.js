@@ -41,10 +41,14 @@ export default class Game {
 			KEYS.down
 		);
 
-	}
+	} // constructor ends here
+
+	/** 
+	 * Render SVG Images
+	 */
 
 	render() {
-		// More code goes here...
+
 		this.gameElement.innerHTML = '';
 		
 		let svg = document.createElementNS(SVG_NS, 'svg');
