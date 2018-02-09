@@ -8,7 +8,11 @@ export default class Ball {
         this.boardHeight = boardHeight;
         this.direction = 1;
 
+        this.ping = new Audio('public/sounds/pong-03.wav');
+
         this.reset();
+
+
 
     } //constructor ends here
 
@@ -24,7 +28,7 @@ export default class Ball {
 
         // A number between -5 and 5, based on this.vy
         // Guarantees that if vy is large, vx is small (and vice versa)
-        this.vx = this.direction * (10 - Math.abs(this.vy));
+        this.vx = this.direction * (13 - Math.abs(this.vy));
     }
 
     wallCollision() {
@@ -51,7 +55,7 @@ export default class Ball {
             ) 
             {
                 this.vx = -this.vx;
-                //add sound
+                this.ping.play();
             }
 
         }
@@ -64,7 +68,7 @@ export default class Ball {
             )
             {
                 this.vx = -this.vx;
-                //add sound
+                this.ping.play();
             }
         }
     }
