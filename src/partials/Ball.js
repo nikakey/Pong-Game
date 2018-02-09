@@ -9,7 +9,7 @@ export default class Ball {
         this.direction = 1;
 
         this.reset();
-        
+
     } //constructor ends here
 
     reset() {
@@ -42,6 +42,34 @@ export default class Ball {
         }
     }
 
+    paddleCollision(player1, player2) {
+        if(this.vx > 0) {
+            let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height);
+            let [leftX, rightX, topY, bottomY] = paddle;
+            if((this.x + this.radius >= leftX) 
+                && (this.x + this.radius <= rightX) 
+                && (this.y >= topY) && (this.y <= bottomY)
+            ) 
+            {
+                this.vx = -this.vx;
+                //add sound
+            }
+
+        }
+        else {
+            let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height);
+            let [leftX, rightX, topY, bottomY] = paddle;
+            if((this.x - this.radius <= rightX) 
+                && (this.x - this.radius >= leftX)
+                && (this.y >= topY) && (this.y <= bottomY)
+            )
+            {
+                this.vx = -this.vx;
+                //add sound
+            }
+        }
+    }
+
     /**
      * Render SVG Ball Image
      */
@@ -52,6 +80,7 @@ export default class Ball {
         this.y += this.vy;
         
         this.wallCollision();
+        this.paddleCollision(player1, player2);
         
         //Draw the ball
         
