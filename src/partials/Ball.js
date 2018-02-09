@@ -13,7 +13,7 @@ export default class Ball {
      * Render SVG Images
      */
 
-    render(svg) {
+    render(svg, player1, player2) {
         
         let ball = document.createElementNS(SVG_NS, 'circle');
         
@@ -24,5 +24,10 @@ export default class Ball {
 
         svg.appendChild(ball);
     }
+
+    reset() {
+        this.x = this.boardWidth / 2;
+        this.y = this.boardHeight / 2;
+      }
 
   }
