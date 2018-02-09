@@ -28,7 +28,7 @@ export default class Ball {
 
         // A number between -5 and 5, based on this.vy
         // Guarantees that if vy is large, vx is small (and vice versa)
-        this.vx = this.direction * (13 - Math.abs(this.vy));
+        this.vx = this.direction * (10 - Math.abs(this.vy));
     }
 
     wallCollision() {
