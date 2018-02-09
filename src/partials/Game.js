@@ -41,6 +41,14 @@ export default class Game {
 			KEYS.down
 		);
 
+		document.addEventListener('keydown', event => {
+            switch(event.key) {
+                case KEYS.spaceBar:
+                    this.pause = !this.pause;
+                    break;
+            }
+        });
+
 	} // constructor ends here
 
 	/** 
@@ -48,6 +56,10 @@ export default class Game {
 	 */
 
 	render() {
+
+		if(this.pause) {
+            return;
+        }
 
 		this.gameElement.innerHTML = '';
 		

@@ -1,16 +1,16 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, KEYS } from '../settings';
 
 export default class Ball {
     
     constructor(radius, boardWidth, boardHeight) {
-      this.radius = radius;
-      this.boardWidth = boardWidth;
-      this.boardHeight = boardHeight;
-      this.direction = 1;
+        this.radius = radius;
+        this.boardWidth = boardWidth;
+        this.boardHeight = boardHeight;
+        this.direction = 1;
 
-      this.reset();
-    }
-
+        this.reset();
+        
+    } //constructor ends here
 
     reset() {
         this.x = this.boardWidth / 2;
@@ -47,6 +47,7 @@ export default class Ball {
      */
 
     render(svg, player1, player2) {
+        
         this.x += this.vx;
         this.y += this.vy;
         
