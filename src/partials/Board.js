@@ -6,6 +6,10 @@ export default class Board {
       this.width = width;
       this.height = height;
     }
+
+    /**
+     * Rener SVG Images
+     */
     
     render(svg) {
         
