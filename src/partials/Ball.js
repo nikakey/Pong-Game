@@ -24,7 +24,7 @@ export default class Ball {
 
         // A number between -5 and 5, based on this.vy
         // Guarantees that if vy is large, vx is small (and vice versa)
-        this.vx = this.direction * (6 - Math.abs(this.vy));
+        this.vx = this.direction * (10 - Math.abs(this.vy));
     }
 
     wallCollision() {
@@ -37,7 +37,6 @@ export default class Ball {
             this.vy = -this.vy;
         }
         else if(hitLeft || hitRight) {
-            //this.reset();
             this.vx = -this.vx;
         }
     }
@@ -70,6 +69,11 @@ export default class Ball {
         }
     }
 
+    goal(player) {
+        player.score++;
+        this.reset();
+    }
+
     /**
      * Render SVG Ball Image
      */
@@ -92,6 +96,18 @@ export default class Ball {
         ball.setAttributeNS(null, 'cy', this.y);
 
         svg.appendChild(ball);
+
+        const rightGoal = this.x + this.radius >= this.boardWidth;
+        const leftGoal = this.x - this.radius <= 0;
+
+        if(rightGoal) {
+            this.goal(player1);
+            this.direction = 1;
+        }
+        else if(leftGoal) {
+            this.goal(player2);
+            this.direction = -1;
+        }
     }
 
   }

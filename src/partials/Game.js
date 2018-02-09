@@ -2,6 +2,7 @@ import { SVG_NS, KEYS } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
+import Score from './Score';
 
 export default class Game {
 
@@ -47,7 +48,10 @@ export default class Game {
                     this.pause = !this.pause;
                     break;
             }
-        });
+		});
+		
+		this.score1 = new Score(this.width / 2 - 50, 30, 30);
+		this.score2 = new Score(this.width / 2 + 25, 30, 30);
 
 	} // constructor ends here
 
@@ -68,6 +72,8 @@ export default class Game {
 		svg.setAttributeNS(null, 'width', this.width);
 		svg.setAttributeNS(null, 'height', this.height);
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
+
+		this.gameElement.appendChild(svg);
 		
 		this.board.render(svg);
 
@@ -76,7 +82,8 @@ export default class Game {
 
 		this.ball.render(svg, this.player1, this.player2);
 
-		this.gameElement.appendChild(svg);
+		this.score1.render(svg, this.player1.score);
+		this.score2.render(svg, this.player2.score);
 	}
 
 }
