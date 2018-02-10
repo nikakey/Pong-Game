@@ -82,14 +82,15 @@ export default class Ball {
      * Render SVG Ball Image
      */
 
-    render(svg, player1, player2) {
+    render(svg, player1, player2, pause) {
         
-        this.x += this.vx;
-        this.y += this.vy;
-        
-        this.wallCollision();
-        this.paddleCollision(player1, player2);
-        
+        if(!pause) {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            this.wallCollision();
+            this.paddleCollision(player1, player2);
+        }
         //Draw the ball
         
         let ball = document.createElementNS(SVG_NS, 'circle');

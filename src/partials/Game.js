@@ -3,6 +3,7 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
+import Pausescreen from './Pausescreen'
 
 export default class Game {
 
@@ -55,6 +56,9 @@ export default class Game {
 		this.score1 = new Score(this.width / 2 - 70, 30, 30);
 		this.score2 = new Score(this.width / 2 + 35, 30, 30);
 
+		this.pauseText = new Pausescreen(this.width / 2 - 125, this.height / 2, 70);
+		this.pauseAbstract = new Pausescreen(80, this.height / 2 + 50, 20);
+
 	} // constructor ends here
 
 	/** 
@@ -62,11 +66,7 @@ export default class Game {
 	 */
 
 	render() {
-
-		if(this.pause) {
-            return;
-        }
-
+		
 		this.gameElement.innerHTML = '';
 		
 		let svg = document.createElementNS(SVG_NS, 'svg');
@@ -79,13 +79,19 @@ export default class Game {
 		
 		this.board.render(svg);
 
-		this.player1.render(svg);
-		this.player2.render(svg);
+		this.player1.render(svg, this.pause);
+		this.player2.render(svg, this.pause);
 
-		this.ball.render(svg, this.player1, this.player2);
+		this.ball.render(svg, this.player1, this.player2, this.pause);
 
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
+
+		if(this.pause) {
+			this.pauseText.render(svg, 'Pause');
+			this.pauseAbstract.render(svg, 'To continue the game, please press the spacebar.');
+			return;
+		}
 	}
 
 }
