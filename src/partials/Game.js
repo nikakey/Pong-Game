@@ -53,11 +53,10 @@ export default class Game {
             }
 		});
 		
-		this.score1 = new Score(this.width / 2 - 70, 30, 30);
-		this.score2 = new Score(this.width / 2 + 35, 30, 30);
+		this.score1 = new Score(this.width / 2 - 50, 30, 30);
+		this.score2 = new Score(this.width / 2 + 30, 30, 30);
 
-		this.pauseText = new Pausescreen(this.width / 2 - 125, this.height / 2, 70);
-		this.pauseAbstract = new Pausescreen(80, this.height / 2 + 50, 20);
+		this.pauseContent = new Pausescreen();
 
 	} // constructor ends here
 
@@ -88,8 +87,7 @@ export default class Game {
 		this.score2.render(svg, this.player2.score);
 
 		if(this.pause) {
-			this.pauseText.render(svg, 'Pause');
-			this.pauseAbstract.render(svg, 'To continue the game, please press the spacebar.');
+			this.pauseContent.render(svg, this.width, this.height);
 			return;
 		}
 	}

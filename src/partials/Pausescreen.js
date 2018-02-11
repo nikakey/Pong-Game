@@ -11,28 +11,46 @@ export default class Pausescreen {
 
     }//constructor ends here
 
-    render(svg, pause) {
+    render(svg, width, height) {
         
+        let pauseRect = document.createElementNS(SVG_NS, 'rect');
+        
+        pauseRect.setAttributeNS(null, 'fill', '#353535');
+        pauseRect.setAttributeNS(null, 'opacity', '.75');
+        pauseRect.setAttributeNS(null, 'width', width);
+        pauseRect.setAttributeNS(null, 'height', height);
+
         let pauseText = document.createElementNS(SVG_NS, 'text');
 
-        pauseText.setAttributeNS(null, 'x', this.x);
-        pauseText.setAttributeNS(null, 'y', this.y);
+        pauseText.setAttributeNS(null, 'x', width / 2 - 125);
+        pauseText.setAttributeNS(null, 'y', height / 2 - 70);
         pauseText.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
-        pauseText.setAttributeNS(null, 'font-size', this.size);
+        pauseText.setAttributeNS(null, 'font-size', 70);
         pauseText.setAttributeNS(null, 'fill', '#ffffff');
-        pauseText.textContent = pause;
+        pauseText.textContent = 'Pause';
 
         let pauseAbstract = document.createElementNS(SVG_NS, 'text');
         
-        pauseAbstract.setAttributeNS(null, 'x', this.x);
-        pauseAbstract.setAttributeNS(null, 'y', this.y);
+        pauseAbstract.setAttributeNS(null, 'x', 165);
+        pauseAbstract.setAttributeNS(null, 'y', height / 2);
         pauseAbstract.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
-        pauseAbstract.setAttributeNS(null, 'font-size', this.size);
+        pauseAbstract.setAttributeNS(null, 'font-size', 20);
         pauseAbstract.setAttributeNS(null, 'fill', '#ffffff');
-        pauseAbstract.textContent = pause;
+        pauseAbstract.textContent = 'To continue the game, please press';
 
+        let pauseSpacebar = document.createElementNS(SVG_NS, 'text');
+        
+        pauseSpacebar.setAttributeNS(null, 'x', width / 2 - 85);
+        pauseSpacebar.setAttributeNS(null, 'y', height / 2 + 40);
+        pauseSpacebar.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
+        pauseSpacebar.setAttributeNS(null, 'font-size', 30);
+        pauseSpacebar.setAttributeNS(null, 'fill', '#ffffff');
+        pauseSpacebar.textContent = 'spacebar';
+
+        svg.appendChild(pauseRect);
         svg.appendChild(pauseText);
         svg.appendChild(pauseAbstract);
+        svg.appendChild(pauseSpacebar);
     }
 
 
