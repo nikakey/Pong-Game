@@ -7,6 +7,7 @@ import Pausescreen from './Pausescreen'
 import Level from './Level';
 import LevelScreen from './LevelScreen';
 import WinnerScreen from './WinnerScreen';
+import FinalWinner from './FinalWinner';
 
 export default class Game {
 
@@ -76,6 +77,10 @@ export default class Game {
 		this.winnerScreen = new WinnerScreen();
 
 		this.levelScreen = new LevelScreen();
+
+		this.finalWinner = new FinalWinner();
+
+		this.gameWinner = 0;
 	
 	} // constructor ends here
 
@@ -95,12 +100,37 @@ export default class Game {
 
 		this.gameElement.appendChild(svg);
 		
+		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) == true) {
+
+		}
+		
 		
 		let winner = 'none';
 		let winnerNum = this.levels[this.currentLevel].isFinished();
 		if(winnerNum > 0) {
-			if (this.winnerScreen.wasShown == false)
+			if(this.currentLevel === 2) {
+				this.finalWinner.enabled = true;
+				let p1 = 0;
+				let p2 = 0;
+				for(let i = 0; i <= 2; i++) {
+					if(this.levels[i].isFinished() == 1) {
+						p1++;
+					}
+					else {
+						p2++;
+					}
+				}
+				if(p1 > p2) {
+					this.gameWinner = this.player1.player;
+				}
+				else {
+					this.gameWinner = this.player2.player;
+				}
+				
+			}
+			if (this.winnerScreen.wasShown == false) {
 				this.winnerScreen.enabled = true;
+			}
 			if (winnerNum == 1) {
 				winner = this.player1.player;
 			}
@@ -138,8 +168,6 @@ export default class Game {
 
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
-
-		
 
 		if(this.pause) {
 			this.pauseContent.render(svg, this.width, this.height);
