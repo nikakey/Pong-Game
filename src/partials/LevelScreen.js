@@ -16,7 +16,7 @@ export default class LevelScreen {
 
     render(svg, width, height, currentLevelNum) {
         
-        let seconds = Math.floor(((new Date().getTime() - this.startTime) % (1000 * 60)) / 1000);
+        let seconds = Math.floor(((new Date().getTime() - this.startTime) / 1000));
 
         if(seconds > 5) {
             return false;
