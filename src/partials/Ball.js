@@ -8,6 +8,8 @@ export default class Ball {
         this.boardHeight = boardHeight;
         this.direction = 1;
 
+        this.ballSpeed = 8;
+
         this.ping = new Audio('public/sounds/pong-03.wav');
 
         this.reset();
@@ -28,7 +30,7 @@ export default class Ball {
 
         // A number between -5 and 5, based on this.vy
         // Guarantees that if vy is large, vx is small (and vice versa)
-        this.vx = this.direction * (10 - Math.abs(this.vy));
+        this.vx = this.direction * (this.ballSpeed - Math.abs(this.vy));
     }
 
     wallCollision() {
@@ -73,8 +75,14 @@ export default class Ball {
         }
     }
 
-    goal(player) {
+    goal(player, level) {
         player.score++;
+        if(player.player === 'player1') {
+            level.score1++;
+        }
+        else {
+            level.score2++;
+        }
         this.reset();
     }
 
@@ -82,7 +90,7 @@ export default class Ball {
      * Render SVG Ball Image
      */
 
-    render(svg, player1, player2, pause) {
+    render(svg, player1, player2, pause, level) {
         
         if(!pause) {
             this.x += this.vx;
@@ -106,11 +114,11 @@ export default class Ball {
         const leftGoal = this.x - this.radius <= 0;
 
         if(rightGoal) {
-            this.goal(player1);
+            this.goal(player1, level);
             this.direction = 1;
         }
         else if(leftGoal) {
-            this.goal(player2);
+            this.goal(player2, level);
             this.direction = -1;
         }
     }

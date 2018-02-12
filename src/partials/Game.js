@@ -4,6 +4,8 @@ import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
 import Pausescreen from './Pausescreen'
+import Level from './Level';
+import LevelScreen from './LevelScreen';
 
 export default class Game {
 
@@ -58,6 +60,20 @@ export default class Game {
 
 		this.pauseContent = new Pausescreen();
 
+		this.levels = [];
+		for(let i = 1; i < 4; i++){
+			if(i != 3){
+				this.levels.push(new Level(i * 2 + 6, 1));
+			}
+			else {
+				this.levels.push(new Level(i * 2 + 6, 2));
+			}
+		}
+
+		this.currentLevel = 0;
+
+		this.levelScreen = new LevelScreen();
+
 	} // constructor ends here
 
 	/** 
@@ -76,15 +92,28 @@ export default class Game {
 
 		this.gameElement.appendChild(svg);
 		
+		if(this.levelScreen.render(svg, this.width, this.height, this.currentLevel + 1) == true) {
+			return;
+		}
+		
+		this.ball.ballSpeed = this.levels[this.currentLevel].ballSpeed;
+		
 		this.board.render(svg);
 
 		this.player1.render(svg, this.pause);
 		this.player2.render(svg, this.pause);
 
-		this.ball.render(svg, this.player1, this.player2, this.pause);
+		this.ball.render(svg, this.player1, this.player2, this.pause, this.levels[this.currentLevel]);
 
 		this.score1.render(svg, this.player1.score);
 		this.score2.render(svg, this.player2.score);
+
+		if(this.levels[this.currentLevel].score1 === 10 || this.levels[this.currentLevel].score2 === 10) {
+			this.levelScreen.show();
+			this.currentLevel++;
+			this.player1.score = 0;
+			this.player2.score = 0;
+		}
 
 		if(this.pause) {
 			this.pauseContent.render(svg, this.width, this.height);

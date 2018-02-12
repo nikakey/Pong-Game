@@ -16,7 +16,7 @@ export default class Pausescreen {
         let pauseRect = document.createElementNS(SVG_NS, 'rect');
         
         pauseRect.setAttributeNS(null, 'fill', '#353535');
-        pauseRect.setAttributeNS(null, 'opacity', '.75');
+        pauseRect.setAttributeNS(null, 'opacity', '.5');
         pauseRect.setAttributeNS(null, 'width', width);
         pauseRect.setAttributeNS(null, 'height', height);
 
