@@ -8,6 +8,7 @@ import Level from './Level';
 import LevelScreen from './LevelScreen';
 import WinnerScreen from './WinnerScreen';
 import FinalWinner from './FinalWinner';
+import OpenScreen from './OpenScreen';
 
 export default class Game {
 
@@ -65,10 +66,10 @@ export default class Game {
 		this.levels = [];
 		for(let i = 1; i < 4; i++){
 			if(i != 3){
-				this.levels.push(new Level(i * 2 + 6, 1));
+				this.levels.push(new Level(i * 2 + 6));
 			}
 			else {
-				this.levels.push(new Level(i * 2 + 6, 2));
+				this.levels.push(new Level(i * 2 + 6));
 			}
 		}
 
@@ -81,6 +82,8 @@ export default class Game {
 		this.finalWinner = new FinalWinner();
 
 		this.gameWinner = 0;
+
+		this.openScreen = new OpenScreen();
 	
 	} // constructor ends here
 
@@ -99,9 +102,14 @@ export default class Game {
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 
 		this.gameElement.appendChild(svg);
+
+		if(this.openScreen.render(svg, this.width, this.height) == true) {
+			return;
+		}
+
 		
 		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) == true) {
-
+			return;
 		}
 		
 		
