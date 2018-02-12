@@ -126,7 +126,7 @@ export default class Game {
 				else {
 					this.gameWinner = this.player2.player;
 				}
-				
+				return;
 			}
 			if (this.winnerScreen.wasShown == false) {
 				this.winnerScreen.enabled = true;

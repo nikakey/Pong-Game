@@ -68,7 +68,7 @@ export default class WinnerScreen {
         let keyName = document.createElementNS(SVG_NS, 'text');
         
         keyName.setAttributeNS(null, 'x', width / 2 - 50);
-        keyName.setAttributeNS(null, 'y', height / 2 + 100);
+        keyName.setAttributeNS(null, 'y', height / 2 + 90);
         keyName.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         keyName.setAttributeNS(null, 'font-size', 30);
         keyName.setAttributeNS(null, 'fill', '#ffa31a');
