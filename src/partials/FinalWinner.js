@@ -37,7 +37,7 @@ export default class FinalWinner {
         name.setAttributeNS(null, 'y', height / 2);
         name.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         name.setAttributeNS(null, 'font-size', 40);
-        name.setAttributeNS(null, 'fill', '#ffffff');
+        name.setAttributeNS(null, 'fill', '#ff1a1a');
         name.textContent = winner;
 
         let congrats = document.createElementNS(SVG_NS, 'text');
@@ -46,7 +46,7 @@ export default class FinalWinner {
         congrats.setAttributeNS(null, 'y', height / 2 + 100);
         congrats.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         congrats.setAttributeNS(null, 'font-size', 50);
-        congrats.setAttributeNS(null, 'fill', '#ffffff');
+        congrats.setAttributeNS(null, 'fill', '#ffa31a');
         congrats.textContent = 'Congratulations!!!';
 
 

@@ -52,7 +52,7 @@ export default class LevelScreen {
         Countdown.setAttributeNS(null, 'y', height / 2 + 80);
         Countdown.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         Countdown.setAttributeNS(null, 'font-size', 70);
-        Countdown.setAttributeNS(null, 'fill', '#ffffff');
+        Countdown.setAttributeNS(null, 'fill', '#ff1a1a');
         let count = 5;
         for(let i = 1; i <= 5; i++) {
             if(seconds < i){

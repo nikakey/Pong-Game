@@ -53,7 +53,7 @@ export default class WinnerScreen {
         name.setAttributeNS(null, 'y', height / 2);
         name.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         name.setAttributeNS(null, 'font-size', 40);
-        name.setAttributeNS(null, 'fill', '#ffffff');
+        name.setAttributeNS(null, 'fill', '#ff1a1a');
         name.textContent = winnerName;
 
         let nextStep = document.createElementNS(SVG_NS, 'text');
@@ -71,7 +71,7 @@ export default class WinnerScreen {
         keyName.setAttributeNS(null, 'y', height / 2 + 100);
         keyName.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         keyName.setAttributeNS(null, 'font-size', 30);
-        keyName.setAttributeNS(null, 'fill', '#ffffff');
+        keyName.setAttributeNS(null, 'fill', '#ffa31a');
         keyName.textContent = 'Shift';
 
 

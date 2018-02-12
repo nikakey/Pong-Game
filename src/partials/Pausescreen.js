@@ -26,7 +26,7 @@ export default class Pausescreen {
         pauseText.setAttributeNS(null, 'y', height / 2 - 70);
         pauseText.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         pauseText.setAttributeNS(null, 'font-size', 70);
-        pauseText.setAttributeNS(null, 'fill', '#ffffff');
+        pauseText.setAttributeNS(null, 'fill', '#ff1a1a');
         pauseText.textContent = 'Pause';
 
         let pauseAbstract = document.createElementNS(SVG_NS, 'text');
@@ -44,7 +44,7 @@ export default class Pausescreen {
         pauseSpacebar.setAttributeNS(null, 'y', height / 2 + 40);
         pauseSpacebar.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         pauseSpacebar.setAttributeNS(null, 'font-size', 30);
-        pauseSpacebar.setAttributeNS(null, 'fill', '#ffffff');
+        pauseSpacebar.setAttributeNS(null, 'fill', '#ffa31a');
         pauseSpacebar.textContent = 'spacebar';
 
         svg.appendChild(pauseRect);
