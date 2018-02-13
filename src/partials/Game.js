@@ -102,11 +102,16 @@ export default class Game {
 		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
 
 		this.gameElement.appendChild(svg);
-
-		if(this.openScreen.render(svg, this.width, this.height) === true) {
+		
+		if (this.openScreen.wasShown === false) {
+			this.levelScreen.show();
+		} // Start the level 1 screen only when the open screen is closed
+		
+			if(this.openScreen.render(svg, this.width, this.height) === true) {
 			return;
 		} // Stop rendering everything else when the open screen is shown
-
+		
+		this.openScreen.wasShown = true; // Set that the open screen was shown
 		
 		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) === true) {
 			return;
