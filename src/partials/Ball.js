@@ -8,13 +8,11 @@ export default class Ball {
         this.boardHeight = boardHeight;
         this.direction = 1;
 
-        this.ballSpeed = 8;
+        this.ballSpeed = 8; 
 
-        this.ping = new Audio('public/sounds/pong-03.wav');
+        this.ping = new Audio('public/sounds/pong-03.wav'); // Add sound when the ball hits a paddle
 
         this.reset();
-
-
 
     } //constructor ends here
 
@@ -23,6 +21,7 @@ export default class Ball {
         this.y = this.boardHeight / 2;
         
         //Generates a random number betweeen -5 and 5 that isn't 0
+
         this.vy = 0;
         while(this.vy === 0) {
             this.vy = Math.floor(Math.random() * 10 - 5);
@@ -30,6 +29,7 @@ export default class Ball {
 
         // A number between -5 and 5, based on this.vy
         // Guarantees that if vy is large, vx is small (and vice versa)
+
         this.vx = this.direction * (this.ballSpeed - Math.abs(this.vy));
     }
 
@@ -92,6 +92,8 @@ export default class Ball {
 
     render(svg, player1, player2, pause, level) {
         
+        // Stop the ball from render when pause is active
+
         if(!pause) {
             this.x += this.vx;
             this.y += this.vy;

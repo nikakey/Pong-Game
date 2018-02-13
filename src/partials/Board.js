@@ -5,7 +5,8 @@ export default class Board {
     constructor(width, height) {
       this.width = width;
       this.height = height;
-    }
+      
+    } // constructor ends here
 
     /**
      * Rener SVG Images

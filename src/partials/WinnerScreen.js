@@ -6,8 +6,11 @@ export default class WinnerScreen {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.enabled = false;
-        this.wasShown = false;
+        this.enabled = false; // True - show the screen; False - don't show the screen
+        this.wasShown = false; // True - screen was shown; False screen was not shown
+        
+        //Listen to Shift to open the next screen
+
         document.addEventListener('keydown', event => {
             if(event.shiftKey) {
                 this.enabled = false;
@@ -16,21 +19,23 @@ export default class WinnerScreen {
 
         this.keyState = {};
 
-    document.addEventListener('keydown', event => {
-      this.keyState[event.key || event.which] = true;
-    }, true);
+        document.addEventListener('keydown', event => {
+            this.keyState[event.key || event.which] = true;
+        }, true);
 
-    document.addEventListener('keyup', event => {
-      this.keyState[event.key || event.which] = false;
-    }, true);
+        document.addEventListener('keyup', event => {
+            this.keyState[event.key || event.which] = false;
+        }, true);
 
     }//constructor ends here
 
     render(svg, width, height, currentLevelNum, winnerName) {
 
-        if(this.enabled == false) {
-            return false;
-        }
+        if(this.enabled === false) {
+            return false; // Don't show the screen
+        } 
+
+        // Draw the screen content
         
         let rect = document.createElementNS(SVG_NS, 'rect');
         
@@ -81,7 +86,7 @@ export default class WinnerScreen {
         svg.appendChild(nextStep);
         svg.appendChild(keyName);
 
-        return true;
+        return true; // Show the screen
         
     }
 

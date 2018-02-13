@@ -17,16 +17,14 @@ export default class Game {
 		this.width = width;
 		this.height = height;
 		this.gameElement = document.getElementById(this.element);
-		
-		// Other code goes here...
-		
+
 		this.board = new Board(this.width, this.height);
 
 		this.ball = new Ball(8, this.width, this.height);
-
+		
 		this.paddleWidth = 8;
-  		this.paddleHeight = 56;
-  		this.boardGap = 10;
+		this.paddleHeight = 56;
+		this.boardGap = 10;
 		
 		this.player1 = new Paddle(
 			this.height,
@@ -51,10 +49,10 @@ export default class Game {
 		);
 
 		document.addEventListener('keydown', event => {
-            switch(event.key) {
-                case KEYS.spaceBar:
-                    this.pause = !this.pause;
-                    break;
+			switch(event.key) {
+				case KEYS.spaceBar:
+					this.pause = !this.pause;
+					break;
             }
 		});
 		
@@ -63,9 +61,11 @@ export default class Game {
 
 		this.pauseContent = new Pausescreen();
 
+		// Change the speed of the ball by 2 (from 8 to 12) on each level
+
 		this.levels = [];
 		for(let i = 1; i < 4; i++){
-			if(i != 3){
+			if(i !== 3){
 				this.levels.push(new Level(i * 2 + 6));
 			}
 			else {
@@ -103,25 +103,29 @@ export default class Game {
 
 		this.gameElement.appendChild(svg);
 
-		if(this.openScreen.render(svg, this.width, this.height) == true) {
+		if(this.openScreen.render(svg, this.width, this.height) === true) {
 			return;
-		}
+		} // Stop rendering everything else when the open screen is shown
 
 		
-		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) == true) {
+		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) === true) {
 			return;
-		}
+		} // Stop rendering everything else when the final screen is shown, the end of the game
 		
 		
+/**
+ * Counting the winner score and change the level
+ */
+
 		let winner = 'none';
-		let winnerNum = this.levels[this.currentLevel].isFinished();
+		let winnerNum = this.levels[this.currentLevel].getWinner();
 		if(winnerNum > 0) {
-			if(this.currentLevel === 2) {
+			if(this.currentLevel === 2) { // There are only 3 levels, so the game winner is defined here
 				this.finalWinner.enabled = true;
-				let p1 = 0;
-				let p2 = 0;
+				let p1 = 0; // Quantity of wins of the player 1
+				let p2 = 0; // Quantity of wins of the player 2
 				for(let i = 0; i <= 2; i++) {
-					if(this.levels[i].isFinished() == 1) {
+					if(this.levels[i].getWinner() === 1) {
 						p1++;
 					}
 					else {
@@ -134,19 +138,19 @@ export default class Game {
 				else {
 					this.gameWinner = this.player2.player;
 				}
-				return;
+				return; // Exit the function to show Final Winner screen
 			}
-			if (this.winnerScreen.wasShown == false) {
+			if (this.winnerScreen.wasShown === false) {
 				this.winnerScreen.enabled = true;
 			}
-			if (winnerNum == 1) {
+			if (winnerNum === 1) {
 				winner = this.player1.player;
 			}
-			if (winnerNum == 2) {
+			if (winnerNum === 2) {
 				winner = this.player2.player;
 			}
 		
-			if (this.winnerScreen.enabled == false){
+			if (this.winnerScreen.enabled === false){ // Show the level screen only after the level winner Screen is closed
 				this.levelScreen.show();
 				this.currentLevel++;
 				this.player1.score = 0;
@@ -155,13 +159,15 @@ export default class Game {
 			
 		}
 
-		if(this.winnerScreen.render(svg, this.width, this.height, this.currentLevel+1, winner) == true) {
+		if(this.winnerScreen.render(svg, this.width, this.height, this.currentLevel+1, winner) === true) {
 			this.winnerScreen.wasShown = true;
 			return;
 		}
-		else {this.winnerScreen.wasShown = false;}
+		else {
+			this.winnerScreen.wasShown = false;
+		}
 		
-		if(this.levelScreen.render(svg, this.width, this.height, this.currentLevel + 1) == true) {
+		if(this.levelScreen.render(svg, this.width, this.height, this.currentLevel + 1) === true) {
 			return;
 		}
 		

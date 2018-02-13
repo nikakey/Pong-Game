@@ -9,6 +9,9 @@ export default class Score {
     }//constructor ends here
 
     render(svg, score) {
+
+        // Draw the scores
+        
         let text = document.createElementNS(SVG_NS, 'text');
 
         text.setAttributeNS(null, 'x', this.x);

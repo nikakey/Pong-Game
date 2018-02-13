@@ -7,11 +7,11 @@ export default class Pausescreen {
         this.y = y;
         this.size = size;
 
-    
-
     }//constructor ends here
 
     render(svg, width, height) {
+
+        // Draw puse screen content
         
         let pauseRect = document.createElementNS(SVG_NS, 'rect');
         

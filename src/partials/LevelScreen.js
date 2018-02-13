@@ -6,21 +6,29 @@ export default class LevelScreen {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.startTime = new Date().getTime();
+        this.startTime = new Date().getTime(); //Current date and time for the countdown
 
     }//constructor ends here
 
+    /**
+     * Show the screen function
+     */
+    
     show(){
         this.startTime = new Date().getTime();
     }
 
     render(svg, width, height, currentLevelNum) {
         
-        let seconds = Math.floor(((new Date().getTime() - this.startTime) / 1000));
+        // Get quantity of seconds that past from start of screen showing
 
+        let seconds = Math.floor(((new Date().getTime() - this.startTime) / 1000)); 
+        
         if(seconds > 5) {
-            return false;
+            return false; // Show screen only 5 seconds
         }
+
+        // Draw the screen content
         
         let levelRect = document.createElementNS(SVG_NS, 'rect');
         
@@ -54,6 +62,9 @@ export default class LevelScreen {
         Countdown.setAttributeNS(null, 'font-size', 70);
         Countdown.setAttributeNS(null, 'fill', '#ff1a1a');
         let count = 5;
+
+        //Countdown
+
         for(let i = 1; i <= 5; i++) {
             if(seconds < i){
                 break;

@@ -7,8 +7,10 @@ export default class OpenScreen {
         this.y = y;
         this.size = size;
 
-        this.enabled = true;
-        this.wasShown = false;
+        this.enabled = true; // True - show the screen; False - don't show the screen
+        this.wasShown = false; // True - screen was shown; False screen was not shown
+        
+        // Listens to Shift to open next screen
         document.addEventListener('keydown', event => {
             if(event.shiftKey) {
                 this.enabled = false;
@@ -24,14 +26,17 @@ export default class OpenScreen {
         document.addEventListener('keyup', event => {
             this.keyState[event.key || event.which] = false;
         }, true);
+
     } //constructor ends here
 
     render(svg, width, height) {
 
-        if(this.enabled == false) {
-            return false;
+        if(this.enabled === false) {
+            return false; // Don't show the screen
         }
         
+        // Draw the screen content
+
         let rect = document.createElementNS(SVG_NS, 'rect');
         
         rect.setAttributeNS(null, 'fill', '#353535');
@@ -141,7 +146,7 @@ export default class OpenScreen {
         svg.appendChild(text6);
         svg.appendChild(text7);
 
-        return true;
+        return true; //Show the screen
         
     }
 

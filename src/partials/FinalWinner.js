@@ -6,15 +6,17 @@ export default class FinalWinner {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.enabled = false;
+        this.enabled = false; // True - show the screen; False - don't show the screen
 
     }//constructor ends here
 
     render(svg, width, height, winner) {
 
-        if(this.enabled == false) {
-            return false;
+        if(this.enabled === false) {
+            return false; // Don't show the screen
         }
+
+        // Draw the screen content
         
         let rect = document.createElementNS(SVG_NS, 'rect');
         
@@ -55,7 +57,7 @@ export default class FinalWinner {
         svg.appendChild(name);
         svg.appendChild(congrats);
 
-        return true;
+        return true; //Show the screen
         
     }
 
