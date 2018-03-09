@@ -77,7 +77,7 @@ export default class OpenScreen {
         text1.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
         text1.setAttributeNS(null, 'font-size', 20);
         text1.setAttributeNS(null, 'fill', '#ffffff');
-        text1.textContent = 'To control the puddle, please press';
+        text1.textContent = 'To control the paddle, please press';
 
         let text2 = document.createElementNS(SVG_NS, 'text');
         
