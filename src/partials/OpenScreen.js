@@ -1,11 +1,10 @@
 import { SVG_NS } from '../settings';
+import Screen from './Screen';
 
-export default class OpenScreen {
+export default class OpenScreen extends Screen {
 
     constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+        super(x,y,size);
 
         this.enabled = true; // True - show the screen; False - don't show the screen
         this.wasShown = false; // True - screen was shown; False screen was not shown

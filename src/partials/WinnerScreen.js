@@ -4,7 +4,6 @@ import Screen from './Screen';
 export default class WinnerScreen extends Screen {
 
     constructor(x, y, size) {
-        
         super(x,y,size);
 
         this.enabled = false; // True - show the screen; False - don't show the screen

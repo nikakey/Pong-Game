@@ -1,11 +1,11 @@
 import { SVG_NS } from '../settings';
+import Screen from './Screen';
 
-export default class FinalWinner {
+export default class FinalWinner extends Screen {
 
     constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+        super(x,y,size);
+        
         this.enabled = false; // True - show the screen; False - don't show the screen
 
     }//constructor ends here

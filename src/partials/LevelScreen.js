@@ -1,11 +1,11 @@
 import { SVG_NS } from '../settings';
+import Screen from './Screen';
 
-export default class LevelScreen {
+export default class LevelScreen extends Screen {
 
     constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+        super(x,y,size);
+
         this.startTime = new Date().getTime(); //Current date and time for the countdown
 
     }//constructor ends here
