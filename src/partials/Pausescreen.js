@@ -1,17 +1,16 @@
 import { SVG_NS } from '../settings';
+import Screen from './Screen';
 
-export default class Pausescreen {
+export default class PauseScreen extends Screen {
 
     constructor(x, y, size) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
+        super(x,y,size);
 
     }//constructor ends here
 
     render(svg, width, height) {
 
-        // Draw puse screen content
+        // Draw pause screen content
         
         let pauseRect = document.createElementNS(SVG_NS, 'rect');
         

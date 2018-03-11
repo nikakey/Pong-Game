@@ -3,7 +3,7 @@ import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
 import Score from './Score';
-import Pausescreen from './Pausescreen'
+import PauseScreen from './Pausescreen'
 import Level from './Level';
 import LevelScreen from './LevelScreen';
 import WinnerScreen from './WinnerScreen';
@@ -59,7 +59,7 @@ export default class Game {
 		this.score1 = new Score(this.width / 2 - 50, 30, 30);
 		this.score2 = new Score(this.width / 2 + 30, 30, 30);
 
-		this.pauseContent = new Pausescreen();
+		
 
 		// Change the speed of the ball by 2 (from 8 to 12) on each level
 
@@ -74,15 +74,12 @@ export default class Game {
 		}
 
 		this.currentLevel = 0;
-
-		this.winnerScreen = new WinnerScreen();
-
-		this.levelScreen = new LevelScreen();
-
-		this.finalWinner = new FinalWinner();
-
 		this.gameWinner = 0;
 
+		this.pauseContent = new PauseScreen();
+		this.winnerScreen = new WinnerScreen();
+		this.levelScreen = new LevelScreen();
+		this.finalWinner = new FinalWinner();
 		this.openScreen = new OpenScreen();
 	
 	} // constructor ends here
