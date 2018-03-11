@@ -87,41 +87,11 @@ export default class Game {
 	
 	} // constructor ends here
 
-	/** 
-	 * Render SVG Images
+	/**
+	 * Counting the winner score and change the level
 	 */
 
-	render() {
-		
-		this.gameElement.innerHTML = '';
-		
-		let svg = document.createElementNS(SVG_NS, 'svg');
-		
-		svg.setAttributeNS(null, 'width', this.width);
-		svg.setAttributeNS(null, 'height', this.height);
-		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
-
-		this.gameElement.appendChild(svg);
-		
-		if (this.openScreen.wasShown === false) {
-			this.levelScreen.show();
-		} // Start the level 1 screen only when the open screen is closed
-		
-			if(this.openScreen.render(svg, this.width, this.height) === true) {
-			return;
-		} // Stop rendering everything else when the open screen is shown
-		
-		this.openScreen.wasShown = true; // Set that the open screen was shown
-		
-		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) === true) {
-			return;
-		} // Stop rendering everything else when the final screen is shown, the end of the game
-		
-		
-/**
- * Counting the winner score and change the level
- */
-
+	defineWinner() {
 		let winner = 'none';
 		let winnerNum = this.levels[this.currentLevel].getWinner();
 		if(winnerNum > 0) {
@@ -143,7 +113,7 @@ export default class Game {
 				else {
 					this.gameWinner = this.player2.player;
 				}
-				return; // Exit the function to show Final Winner screen
+				return false; // End of the game
 			}
 			if (this.winnerScreen.wasShown === false) {
 				this.winnerScreen.enabled = true;
@@ -161,7 +131,44 @@ export default class Game {
 				this.player1.score = 0;
 				this.player2.score = 0;
 			}
-			
+		}
+		return winner;
+	}
+
+	/** 
+	 * Render SVG Images
+	 */
+
+	render() {
+		
+		this.gameElement.innerHTML = '';
+		
+		let svg = document.createElementNS(SVG_NS, 'svg');
+		
+		svg.setAttributeNS(null, 'width', this.width);
+		svg.setAttributeNS(null, 'height', this.height);
+		svg.setAttributeNS(null, 'viewBox', `0 0 ${this.width} ${this.height}`);
+
+		this.gameElement.appendChild(svg);
+		
+		if (this.openScreen.wasShown === false) {
+			this.levelScreen.show();
+		} // Start the level 1 screen only when the open screen is closed
+		
+		if(this.openScreen.render(svg, this.width, this.height) === true) {
+			return;
+		} // Stop rendering everything else when the open screen is shown
+		
+		this.openScreen.wasShown = true; // Set that the open screen was shown
+		
+		if(this.finalWinner.render(svg, this.width, this.height, this.gameWinner) === true) {
+			return;
+		} // Stop rendering everything else when the final screen is shown, the end of the game
+		
+		let winner = this.defineWinner();
+
+		if(winner === false) {
+			return; // Exit the function to show Final Winner screen
 		}
 
 		if(this.winnerScreen.render(svg, this.width, this.height, this.currentLevel+1, winner) === true) {
