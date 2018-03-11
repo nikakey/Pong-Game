@@ -39,3 +39,10 @@ This is a basic pong game using SVGs. Two players can control paddles by using k
 * After the 3rd level, the game ends. Players see the screen with the name of the winner of the whole game round. The winner of the game is the player who won in two levels of three.
 
 ![alt text](public/images/screen-shot-final-winner.png "The winner screen of the game")
+
+## Key points of JS: 
+
+* SVG rendering.
+* Use objects and classes.
+* Use key event listeners.
+* Use an ES2015 class constructor and methods.
