@@ -22,5 +22,11 @@
     "style-loader": "^0.13.1",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "atob": "^2.1.2",
+    "cryptiles": "^4.1.2",
+    "macaddress": "^0.2.9",
+    "randomatic": "^3.1.0"
   }
 }
