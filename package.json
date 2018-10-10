@@ -27,6 +27,7 @@
     "atob": "^2.1.2",
     "cryptiles": "^4.1.2",
     "macaddress": "^0.2.9",
-    "randomatic": "^3.1.0"
+    "randomatic": "^3.1.0",
+    "url-parse": "^1.4.3"
   }
 }
